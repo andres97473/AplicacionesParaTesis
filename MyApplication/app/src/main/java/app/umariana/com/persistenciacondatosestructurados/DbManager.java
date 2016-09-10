@@ -40,7 +40,7 @@ public class DbManager {
 
     private ContentValues contentValues (String nombre, String apellido, String sexo,
                                          long fechaNacimiento, long fehcaIngreso,
-                                         float salario, boolean estado){
+                                         float salario, boolean estado) {
         ContentValues cv = new ContentValues();
         cv.put(NOMBRE_EMPLEADO, nombre);
         cv.put(APELLIDO_EMPLEADO, apellido);
@@ -53,11 +53,11 @@ public class DbManager {
     }
 
     public void agregarEmpleado (String nombre, String apellido, String sexo, long fechaNacimiento,
-                              long fehcaIngreso, float salario, boolean estado){
+                              long fehcaIngreso, float salario, boolean estado) {
         db.insert(TABLE_NAME, null, contentValues(nombre,apellido,sexo,fechaNacimiento,fehcaIngreso,salario,estado));
     }
 
-    public Cursor listarEmpleados (){
+    public Cursor listarEmpleados () {
         String[] columnas = new String[] {
                 ID_EMPLEADO,
                 NOMBRE_EMPLEADO,
@@ -70,7 +70,7 @@ public class DbManager {
         return db.query(TABLE_NAME, columnas, null, null, null, null, null);
     }
 
-    public void eliminarEmpleado (int id){
+    public void eliminarEmpleado (int id) {
         db.delete(TABLE_NAME, ID_EMPLEADO + "=?", new String[]{String.valueOf(id)});
     }
 
@@ -78,7 +78,7 @@ public class DbManager {
         db.delete(TABLE_NAME, null, null);
     }
 
-    public void actualizarEmpleado (ContentValues cv, int id){
+    public void actualizarEmpleado (ContentValues cv, int id) {
         db.update(TABLE_NAME,cv,ID_EMPLEADO + "=?",new String[]{String.valueOf(id)});
     }
     public void actualizarEmpleados (ContentValues cv){

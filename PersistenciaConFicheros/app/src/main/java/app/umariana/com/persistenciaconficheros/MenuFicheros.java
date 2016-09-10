@@ -1,4 +1,4 @@
-package app.umariana.com.persistenciacondatosestructurados;
+package app.umariana.com.persistenciaconficheros;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,17 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MenuDatosEstructurados extends AppCompatActivity implements View.OnClickListener{
+public class MenuFicheros extends AppCompatActivity implements View.OnClickListener {
 
-    private DbManager manager;
     private Button op_agregar, op_consultar, op_modificar, op_eliminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_datos_estructurados);
-
-        manager = new DbManager(this);
+        setContentView(R.layout.activity_menu_ficheros);
 
         op_agregar = (Button) findViewById(R.id.btn_op_agregar);
         op_agregar.setOnClickListener(this);
@@ -32,7 +29,6 @@ public class MenuDatosEstructurados extends AppCompatActivity implements View.On
 
         op_eliminar = (Button) findViewById(R.id.btn_op_eliminar);
         op_eliminar.setOnClickListener(this);
-
     }
 
     @Override
@@ -59,13 +55,14 @@ public class MenuDatosEstructurados extends AppCompatActivity implements View.On
                 msj_eliminar_todo.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        manager.eliminarEmpleados();
+                        //TODO Agregar aqui método de eliminacion
                         Toast.makeText(getApplicationContext(), "Todos los empleados se han eliminado correctamente", Toast.LENGTH_SHORT).show();
                     }
                 });
                 msj_eliminar_todo.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {}
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
                 });
                 msj_eliminar_todo.show();
                 break;

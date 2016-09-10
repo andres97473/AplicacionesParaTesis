@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/empleado_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/empleado_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp" />
+
+    <TextView
+        android:id="@+id/empleado_apellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp" />
+
+    <TextView
+        android:id="@+id/empleado_sexo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp" />
+
+    <TextView
+        android:id="@+id/empleado_fecha_nacimiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp" />
+
+    <TextView
+        android:id="@+id/empleado_fecha_ingreso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp" />
+
+    <TextView
+        android:id="@+id/empleado_salario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp" />
+
+    <TextView
+        android:id="@+id/empleado_estado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp" />
+
+</LinearLayout>

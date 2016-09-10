@@ -1,34 +1,23 @@
-package app.umariana.com.persistenciacondatosestructurados;
+package app.umariana.com.persistenciaconficheros;
 
-import android.annotation.TargetApi;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class OpcionConsultar extends AppCompatActivity {
 
     private ListView lista;
-    private DbManager manager;
-    private Cursor cursor;
-    private SimpleCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opcion_consultar);
-
-        manager = new DbManager(this);
-        cursor = manager.listarEmpleados();
 
         lista = (ListView) findViewById(R.id.lista_empleados);
 
@@ -48,8 +37,9 @@ public class OpcionConsultar extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         //noinspection SimplifiableIfStatement
-        switch (item.getItemId()) {
+        switch (item.getItemId()){
             case R.id.eliminar_unidad:
                 AlertDialog.Builder msj_eliminar = new AlertDialog.Builder(this);
                 msj_eliminar.setMessage("¿Desea eliminar los empleados?");
@@ -61,8 +51,8 @@ public class OpcionConsultar extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         eliminarEmpleados();
                         Toast.makeText(getApplicationContext(),"Empleados eliminados", Toast.LENGTH_SHORT).show();
-                        adapter.changeCursor(cursor);
-                        startActivity(new Intent(getApplicationContext(),MenuDatosEstructurados.class));
+                        //TODO actualizar adaptador
+                        startActivity(new Intent(getApplicationContext(), MenuFicheros.class));
                         startActivity(new Intent(getApplicationContext(), OpcionConsultar.class));
                     }
                 });
@@ -81,11 +71,10 @@ public class OpcionConsultar extends AppCompatActivity {
                 msj_mod_nombre.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        cursor.moveToFirst();
                         modificarNombre();
                         Toast.makeText(getApplicationContext(),"Nombres modificados", Toast.LENGTH_SHORT).show();
-                        adapter.changeCursor(cursor);
-                        startActivity(new Intent(getApplicationContext(),MenuDatosEstructurados.class));
+                        //TODO actualizar adaptador
+                        startActivity(new Intent(getApplicationContext(), MenuFicheros.class));
                         startActivity(new Intent(getApplicationContext(), OpcionConsultar.class));
                     }
                 });
@@ -104,11 +93,10 @@ public class OpcionConsultar extends AppCompatActivity {
                 msj_mod_fecha_ingreso.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        cursor.moveToFirst();
                         modificarFechaIngreso();
                         Toast.makeText(getApplicationContext(),"Fecha de ingreso modificadas", Toast.LENGTH_SHORT).show();
-                        adapter.changeCursor(cursor);
-                        startActivity(new Intent(getApplicationContext(),MenuDatosEstructurados.class));
+                        //TODO actualizar adaptador
+                        startActivity(new Intent(getApplicationContext(), MenuFicheros.class));
                         startActivity(new Intent(getApplicationContext(), OpcionConsultar.class));
                     }
                 });
@@ -127,11 +115,10 @@ public class OpcionConsultar extends AppCompatActivity {
                 msj_mod_salario.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        cursor.moveToFirst();
                         modificarSalario();
                         Toast.makeText(getApplicationContext(),"Fecha de ingreso modificadas", Toast.LENGTH_SHORT).show();
-                        adapter.changeCursor(cursor);
-                        startActivity(new Intent(getApplicationContext(),MenuDatosEstructurados.class));
+                        //TODO actualizar adaptador
+                        startActivity(new Intent(getApplicationContext(), MenuFicheros.class));
                         startActivity(new Intent(getApplicationContext(), OpcionConsultar.class));
                     }
                 });
@@ -150,11 +137,10 @@ public class OpcionConsultar extends AppCompatActivity {
                 msj_mod_estado.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        cursor.moveToFirst();
                         modificarEstado();
                         Toast.makeText(getApplicationContext(),"Fecha de ingreso modificadas", Toast.LENGTH_SHORT).show();
-                        adapter.changeCursor(cursor);
-                        startActivity(new Intent(getApplicationContext(),MenuDatosEstructurados.class));
+                        //TODO actualizar adaptador
+                        startActivity(new Intent(getApplicationContext(), MenuFicheros.class));
                         startActivity(new Intent(getApplicationContext(), OpcionConsultar.class));
                     }
                 });
@@ -170,81 +156,27 @@ public class OpcionConsultar extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void listarEmpleados () {
-        String[] from = new  String[] {
-                manager.ID_EMPLEADO,
-                manager.NOMBRE_EMPLEADO,
-                manager.APELLIDO_EMPLEADO,
-                manager.SEXO_EMPLEADO,
-                manager.FECHA_NACIMIENTO_EMPLEADO,
-                manager.FECHA_INGRESO_EMPLEADO,
-                manager.SALARIO_EMPLEADO,
-                manager.ESTADO_EMPLEADO };
-
-        int[] to = new int[]{
-                R.id.empleado_id,
-                R.id.empleado_nombre,
-                R.id.empleado_apellido,
-                R.id.empleado_sexo,
-                R.id.empleado_fecha_nacimiento,
-                R.id.empleado_fecha_ingreso,
-                R.id.empleado_salario,
-                R.id.empleado_estado };
-
-        cursor = manager.listarEmpleados();
-        adapter = new SimpleCursorAdapter(this, R.layout.formato_fila, cursor, from, to, 0);
-        lista.setAdapter(adapter);
+        //TODO Crear método de listar empleados
     }
 
-    public void eliminarEmpleados() {
-        cursor = manager.listarEmpleados();
-        cursor.moveToFirst();
-        int id = Integer.parseInt(cursor.getString(0));
-        manager.eliminarEmpleado(id);
-        if (cursor.moveToNext()){
-            eliminarEmpleados();
-        }
+    public void eliminarEmpleados () {
+        //TODO Crear método de eliminar empleados
     }
 
-    public void modificarNombre() {
-        ContentValues cv = new ContentValues();
-        cv.put(manager.NOMBRE_EMPLEADO, "NombreModificado");
-        int id = Integer.parseInt(cursor.getString(0));
-        manager.actualizarEmpleado(cv, id);
-        while (cursor.moveToNext()){
-            modificarNombre();
-        }
+    public void modificarNombre () {
+        //TODO Crear método de modificar el nombre de los empleados
     }
 
-    public void modificarFechaIngreso() {
-        ContentValues cv = new ContentValues();
-        cv.put(manager.FECHA_INGRESO_EMPLEADO, 1456324199000l);
-        int id = Integer.parseInt(cursor.getString(0));
-        manager.actualizarEmpleado(cv, id);
-        while (cursor.moveToNext()){
-            modificarFechaIngreso();
-        }
+    public void modificarFechaIngreso () {
+        //TODO Crear método de modificar la fecha de ingreso de los empleados
     }
 
-    public void modificarSalario() {
-        ContentValues cv = new ContentValues();
-        cv.put(manager.SALARIO_EMPLEADO, 2000000);
-        int id = Integer.parseInt(cursor.getString(0));
-        manager.actualizarEmpleado(cv, id);
-        while (cursor.moveToNext()){
-            modificarSalario();
-        }
+    public void modificarSalario () {
+        //TODO Crear método de modificar el salario de los empleados
     }
 
-    public void modificarEstado() {
-        ContentValues cv = new ContentValues();
-        cv.put(manager.ESTADO_EMPLEADO, false);
-        int id = Integer.parseInt(cursor.getString(0));
-        manager.actualizarEmpleado(cv, id);
-        while (cursor.moveToNext()){
-            modificarEstado();
-        }
+    public void modificarEstado () {
+        //TODO Crear método de modificar el estado de los empleados
     }
-
 }

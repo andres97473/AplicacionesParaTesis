@@ -1,6 +1,5 @@
-package app.umariana.com.persistenciacondatosestructurados;
+package app.umariana.com.persistenciaconficheros;
 
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,16 +11,12 @@ import android.widget.Toast;
 public class OpcionModificar extends AppCompatActivity implements View.OnClickListener{
 
     private Button btn_modNombre, btn_modFechaIngreso, btn_modSalario, btn_modEstado, btn_modTodo;
-    private DbManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opcion_modificar);
 
-        manager = new DbManager(this);
-
-        //------------BOTONES---------------
         btn_modNombre = (Button) findViewById(R.id.btn_mod_nombre);
         btn_modNombre.setOnClickListener(this);
 
@@ -36,16 +31,15 @@ public class OpcionModificar extends AppCompatActivity implements View.OnClickLi
 
         btn_modTodo = (Button) findViewById(R.id.btn_mod_todo);
         btn_modTodo.setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        switch (v.getId()){
             case R.id.btn_mod_nombre:
                 AlertDialog.Builder msj_modNombre = new AlertDialog.Builder(this);
                 msj_modNombre.setMessage("¿Desea modificar el nombre de todos los empleados?");
-                msj_modNombre.setTitle("Modificar nombre de empleados");
+                msj_modNombre.setTitle("Modificar empleados");
                 msj_modNombre.setIcon(android.R.drawable.ic_dialog_alert);
                 msj_modNombre.setCancelable(false);
                 msj_modNombre.setPositiveButton("Si", new DialogInterface.OnClickListener() {
@@ -64,7 +58,7 @@ public class OpcionModificar extends AppCompatActivity implements View.OnClickLi
             case R.id.btn_mod_fecha_ingreso:
                 AlertDialog.Builder msj_modFechaIngreso = new AlertDialog.Builder(this);
                 msj_modFechaIngreso.setMessage("¿Desea modificar fecha de ingreso de todos los empleados?");
-                msj_modFechaIngreso.setTitle("Modificar fecha de ingreso de empleados");
+                msj_modFechaIngreso.setTitle("Modificar empleados");
                 msj_modFechaIngreso.setIcon(android.R.drawable.ic_dialog_alert);
                 msj_modFechaIngreso.setCancelable(false);
                 msj_modFechaIngreso.setPositiveButton("Si", new DialogInterface.OnClickListener() {
@@ -83,7 +77,7 @@ public class OpcionModificar extends AppCompatActivity implements View.OnClickLi
             case R.id.btn_mod_salario:
                 AlertDialog.Builder msj_modSalario = new AlertDialog.Builder(this);
                 msj_modSalario.setMessage("¿Desea modificar el salario de todos los empleados?");
-                msj_modSalario.setTitle("Modificar salario de empleados");
+                msj_modSalario.setTitle("Modificar empleados");
                 msj_modSalario.setIcon(android.R.drawable.ic_dialog_alert);
                 msj_modSalario.setCancelable(false);
                 msj_modSalario.setPositiveButton("Si", new DialogInterface.OnClickListener() {
@@ -143,39 +137,22 @@ public class OpcionModificar extends AppCompatActivity implements View.OnClickLi
     }
 
     public void modNombre () {
-        ContentValues cv = new ContentValues();
-        cv.put(manager.NOMBRE_EMPLEADO, "NombreModificadoTotal");
-        manager.actualizarEmpleados(cv);
+        //TODO Crear método que modifique el nombre de todos los empleados
     }
 
     public void modFechaIngreso () {
-        ContentValues cv = new ContentValues();
-        cv.put(manager.FECHA_INGRESO_EMPLEADO, 1555324199000l);
-        manager.actualizarEmpleados(cv);
+        //TODO Crear método que modifique la fecha de ingreso de todos los empleados
     }
 
     public void modSalario () {
-        ContentValues cv = new ContentValues();
-        cv.put(manager.SALARIO_EMPLEADO, 5000000);
-        manager.actualizarEmpleados(cv);
+        //TODO Crear método que modifique el salario de todos los empleados
     }
 
     public void modEstado () {
-        ContentValues cv = new ContentValues();
-        cv.put(manager.ESTADO_EMPLEADO, true);
-        manager.actualizarEmpleados(cv);
+        //TODO Crear método que modifique el estado de todos los empleados
     }
 
     public void modTodo () {
-        ContentValues cv = new ContentValues();
-        cv.put(manager.NOMBRE_EMPLEADO, "NombreModificado X 3");
-        cv.put(manager.APELLIDO_EMPLEADO, "Apellido modificado");
-        cv.put(manager.SEXO_EMPLEADO, "F");
-        cv.put(manager.FECHA_NACIMIENTO_EMPLEADO, 1234567890000l);
-        cv.put(manager.FECHA_INGRESO_EMPLEADO, 2345678901000l);
-        cv.put(manager.SALARIO_EMPLEADO, 800000);
-        cv.put(manager.ESTADO_EMPLEADO, false);
-        manager.actualizarEmpleados(cv);
+        //TODO Crear método que modifique todos los campos de todos los empleados
     }
-
 }
