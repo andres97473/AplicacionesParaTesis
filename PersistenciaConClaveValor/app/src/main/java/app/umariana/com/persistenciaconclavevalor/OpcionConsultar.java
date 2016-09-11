@@ -1,28 +1,18 @@
-package app.umariana.com.persistenciaconficheros;
+package app.umariana.com.persistenciaconclavevalor;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 public class OpcionConsultar extends AppCompatActivity {
 
     private ListView lista;
-    private ArrayAdapter<String> adapter;
-    private String[] empleados = {"No hay empleados registrados"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +20,8 @@ public class OpcionConsultar extends AppCompatActivity {
         setContentView(R.layout.activity_opcion_consultar);
 
         lista = (ListView) findViewById(R.id.lista_empleados);
-        empleados = new String[numFilas()];
+
         listarEmpleados();
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, empleados);
-        lista.setAdapter(adapter);
     }
 
     @Override
@@ -49,9 +37,8 @@ public class OpcionConsultar extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.eliminar_unidad:
                 AlertDialog.Builder msj_eliminar = new AlertDialog.Builder(this);
                 msj_eliminar.setMessage("¿Desea eliminar los empleados?");
@@ -63,9 +50,8 @@ public class OpcionConsultar extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         eliminarEmpleados();
                         Toast.makeText(getApplicationContext(),"Empleados eliminados", Toast.LENGTH_SHORT).show();
-                        //TODO actualizar adaptador
-
-                        startActivity(new Intent(getApplicationContext(), MenuFicheros.class));
+                        //TODO Actualizar adapter si necesita
+                        startActivity(new Intent(getApplicationContext(),MenuClaveValor.class));
                         startActivity(new Intent(getApplicationContext(), OpcionConsultar.class));
                     }
                 });
@@ -86,8 +72,8 @@ public class OpcionConsultar extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         modificarNombre();
                         Toast.makeText(getApplicationContext(),"Nombres modificados", Toast.LENGTH_SHORT).show();
-                        //TODO actualizar adaptador
-                        startActivity(new Intent(getApplicationContext(), MenuFicheros.class));
+                        //TODO Actualizar adapter si requiere
+                        startActivity(new Intent(getApplicationContext(),MenuClaveValor.class));
                         startActivity(new Intent(getApplicationContext(), OpcionConsultar.class));
                     }
                 });
@@ -108,8 +94,8 @@ public class OpcionConsultar extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         modificarFechaIngreso();
                         Toast.makeText(getApplicationContext(),"Fecha de ingreso modificadas", Toast.LENGTH_SHORT).show();
-                        //TODO actualizar adaptador
-                        startActivity(new Intent(getApplicationContext(), MenuFicheros.class));
+                        //TODO Actualizar adapter si requiere
+                        startActivity(new Intent(getApplicationContext(),MenuClaveValor.class));
                         startActivity(new Intent(getApplicationContext(), OpcionConsultar.class));
                     }
                 });
@@ -130,8 +116,8 @@ public class OpcionConsultar extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         modificarSalario();
                         Toast.makeText(getApplicationContext(),"Fecha de ingreso modificadas", Toast.LENGTH_SHORT).show();
-                        //TODO actualizar adaptador
-                        startActivity(new Intent(getApplicationContext(), MenuFicheros.class));
+                        //TODO Actualizar adapter si requiere
+                        startActivity(new Intent(getApplicationContext(),MenuClaveValor.class));
                         startActivity(new Intent(getApplicationContext(), OpcionConsultar.class));
                     }
                 });
@@ -152,8 +138,8 @@ public class OpcionConsultar extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         modificarEstado();
                         Toast.makeText(getApplicationContext(),"Fecha de ingreso modificadas", Toast.LENGTH_SHORT).show();
-                        //TODO actualizar adaptador
-                        startActivity(new Intent(getApplicationContext(), MenuFicheros.class));
+                        //TODO Actualizar adapter si requiere
+                        startActivity(new Intent(getApplicationContext(),MenuClaveValor.class));
                         startActivity(new Intent(getApplicationContext(), OpcionConsultar.class));
                     }
                 });
@@ -169,64 +155,28 @@ public class OpcionConsultar extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void listarEmpleados () {
-        //TODO Crear método de listar empleados
-        InputStreamReader flujo=null;
-        BufferedReader lector=null;
-        try  {
-            flujo= new InputStreamReader(openFileInput("empleados.txt"));
-            lector= new BufferedReader(flujo);
-            String texto = lector.readLine();
-            int i = 0;
-            while (texto!=null) {
-                empleados[i] = texto;
-                texto=lector.readLine();
-                i++;
-            }
-        } catch (Exception ex)  {
-            Log.e("Error", "Error al leer fichero desde memoria interna");
-        } finally {
-            try {
-                if(flujo!=null)
-                    flujo.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    public void listarEmpleados ( ) {
+        //TODO Crear método para listar empleados
     }
 
-    public int numFilas(){
-        int contador = 0;
-        try  {
-            InputStreamReader flujo= new InputStreamReader(openFileInput("empleados.txt"));
-            BufferedReader lector= new BufferedReader(flujo);
-            while (lector.readLine()!=null) {
-                contador++;
-            }
-            flujo.close();
-        } catch (Exception ex)  {
-            Log.e("Error", "Error al leer fichero desde memoria interna");
-        }
-        return contador;
+    public void eliminarEmpleados ( ) {
+        //TODO Crear método para eliminar empleados
     }
 
-    public void eliminarEmpleados () {
-        //TODO Crear método de eliminar empleados
+    public void modificarNombre ( ) {
+        //TODO Crear método para modificar nombre de empleados
     }
 
-    public void modificarNombre () {
-        //TODO Crear método de modificar el nombre de los empleados
+    public void modificarFechaIngreso ( ) {
+        //TODO Crear método para modificar nombre de empleados
     }
 
-    public void modificarFechaIngreso () {
-        //TODO Crear método de modificar la fecha de ingreso de los empleados
+    public void modificarSalario ( ) {
+        //TODO Crear método para modificar nombre de empleados
     }
 
-    public void modificarSalario () {
-        //TODO Crear método de modificar el salario de los empleados
+    public void modificarEstado ( ) {
+        //TODO Crear método para modificar nombre de empleados
     }
 
-    public void modificarEstado () {
-        //TODO Crear método de modificar el estado de los empleados
-    }
 }

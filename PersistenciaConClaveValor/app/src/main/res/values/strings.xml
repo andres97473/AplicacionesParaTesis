@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Persistencia con Clave-Valor</string>
+    <string name="nombre_investigacion">Caracterización de los mecanismos de persistencia local en dispositivos móviles con Android</string>
+    <string name="resumen_investigacion">El objetivo de esta aplicación es evaluar el comportamiento del mecanismo de persistencia local: Almacenamiento de parejas clave-valor</string>
+    <string name="titulo_mecanismo">Almacenamiento de parejas Clave - Valor</string>
+    <string name="op_agregar">Opción de Agregar</string>
+    <string name="op_consultar">Opción de Consultar</string>
+    <string name="op_modificar">Opción de Modificar</string>
+    <string name="op_eliminar">Eliminar todos los empleados</string>
+    <string name="texto_op">A continuación se encuentran cuatro botones, cada uno de ellos hace referencia a las operaciones de manejo de datos con los cuales se evaluara el comportamiento del mecanismo.</string>
+    <string name="texto_agregar">A continuación se muestran tres botones, cada uno de ellos cumple la función de almacenar pequeña, mediana y grande cantidad de información haciendo uso del mecanismo de persistencia de parejas clave-valor.</string>
+    <string name="pequena_inf">Pequeña información</string>
+    <string name="mediana_inf">Mediana información</string>
+    <string name="grande_inf">Grande información</string>
+    <string name="eliminar_inf">Eliminar información</string>
+    <string name="nombre">Nombre(s): </string>
+    <string name="mod_nombre">Modificar nombres</string>
+    <string name="apellido">Apellido(s): </string>
+    <string name="mod_apellido">Modificar apellidos</string>
+    <string name="sexo">Sexo: </string>
+    <string name="mod_sexo">Modificar sexos</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento: </string>
+    <string name="mod_fecha_nacimiento">Modificar fechas de nacimiento</string>
+    <string name="fecha_ingreso">Fecha de ingreso: </string>
+    <string name="mod_fecha_ingreso">Modificar fechas de ingreso</string>
+    <string name="salario">Salario: </string>
+    <string name="mod_salario">Modificar salarios</string>
+    <string name="estado">Estado del empleado: </string>
+    <string name="mod_estado">Modificar estados de los empleados</string>
+    <string name="mod_todo">Modificar todos los campos</string>
+</resources>

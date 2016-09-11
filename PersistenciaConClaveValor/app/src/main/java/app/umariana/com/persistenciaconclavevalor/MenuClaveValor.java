@@ -1,6 +1,5 @@
-package app.umariana.com.persistenciaconficheros;
+package app.umariana.com.persistenciaconclavevalor;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -10,18 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-
-public class MenuFicheros extends AppCompatActivity implements View.OnClickListener {
+public class MenuClaveValor extends AppCompatActivity implements View.OnClickListener {
 
     private Button op_agregar, op_consultar, op_modificar, op_eliminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_ficheros);
+        setContentView(R.layout.activity_menu_clave_valor);
 
         op_agregar = (Button) findViewById(R.id.btn_op_agregar);
         op_agregar.setOnClickListener(this);
@@ -60,28 +55,22 @@ public class MenuFicheros extends AppCompatActivity implements View.OnClickListe
                 msj_eliminar_todo.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //TODO Agregar aqui método de eliminacion
-                        try {
-                            OutputStreamWriter borrador = new OutputStreamWriter(openFileOutput("empleados.txt", Context.MODE_PRIVATE));
-                            borrador.write("");
-                            borrador.close();
-                            Toast.makeText(getApplicationContext(), "Todos los empleados se han eliminado correctamente", Toast.LENGTH_SHORT).show();
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        eliminarEmpleados();
+                        Toast.makeText(getApplicationContext(), "Todos los empleados se han eliminado correctamente", Toast.LENGTH_SHORT).show();
                     }
                 });
                 msj_eliminar_todo.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
                 });
                 msj_eliminar_todo.show();
                 break;
             default:
                 break;
         }
+    }
+
+    public void eliminarEmpleados () {
+        //TODO Crear método para eliminar empleados
     }
 }

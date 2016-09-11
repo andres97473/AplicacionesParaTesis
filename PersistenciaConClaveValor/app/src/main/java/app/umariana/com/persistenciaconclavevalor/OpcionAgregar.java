@@ -1,17 +1,11 @@
-package app.umariana.com.persistenciaconficheros;
+package app.umariana.com.persistenciaconclavevalor;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 
 public class OpcionAgregar extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,7 +32,7 @@ public class OpcionAgregar extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_pequeña_inf:
                 AlertDialog.Builder confirmarP = new AlertDialog.Builder(this);
                 confirmarP.setMessage("¿Desea agregar pequeña cantidad de información?");
@@ -53,9 +47,7 @@ public class OpcionAgregar extends AppCompatActivity implements View.OnClickList
                 });
                 confirmarP.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
                 });
                 confirmarP.show();
                 break;
@@ -73,9 +65,7 @@ public class OpcionAgregar extends AppCompatActivity implements View.OnClickList
                 });
                 confirmarM.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
                 });
                 confirmarM.show();
                 break;
@@ -93,9 +83,7 @@ public class OpcionAgregar extends AppCompatActivity implements View.OnClickList
                 });
                 confirmarG.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
                 });
                 confirmarG.show();
                 break;
@@ -105,22 +93,6 @@ public class OpcionAgregar extends AppCompatActivity implements View.OnClickList
     }
 
     public void agregarEmpleados (int cantidad){
-        //TODO Crear metodo que agregar
-        try {
-            OutputStreamWriter pluma = new OutputStreamWriter(openFileOutput("empleados.txt", Context.MODE_APPEND));
-            int i = 0;
-            while (i < cantidad){
-                pluma.write("Nombre:Apellido:M:1346524199000l:1346524201200l:1200000:true" + "\n");
-                i++;
-            }
-            pluma.close();
-            Toast.makeText(getApplicationContext(), "Información agregada correctamente", Toast.LENGTH_SHORT).show();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Error al agregar", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Error al agregar", Toast.LENGTH_SHORT).show();
-        }
+        //TODO Crear método que agrege empleados
     }
 }

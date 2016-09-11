@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Main">
+
+    <item android:id="@+id/eliminar_unidad"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/eliminar_inf"
+        android:orderInCategory="1"/>
+
+    <item android:id="@+id/mod_nombre_unidad"
+        android:title="@string/mod_nombre"
+        android:orderInCategory="2"/>
+
+    <item android:id="@+id/mod_fecha_ingreso_unidad"
+        android:title="@string/mod_fecha_ingreso"
+        android:orderInCategory="3"/>
+
+    <item android:id="@+id/mod_salario_unidad"
+        android:title="@string/mod_salario"
+        android:orderInCategory="4"/>
+
+    <item android:id="@+id/mod_estado_unidad"
+        android:title="@string/mod_estado"
+        android:orderInCategory="5"/>
+
+</menu>
