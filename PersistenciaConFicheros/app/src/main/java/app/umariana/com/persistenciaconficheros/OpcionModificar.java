@@ -1,12 +1,24 @@
 package app.umariana.com.persistenciaconficheros;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 
 public class OpcionModificar extends AppCompatActivity implements View.OnClickListener{
 
@@ -138,21 +150,223 @@ public class OpcionModificar extends AppCompatActivity implements View.OnClickLi
 
     public void modNombre () {
         //TODO Crear método que modifique el nombre de todos los empleados
+        try {
+            InputStreamReader reader = new InputStreamReader(openFileInput("empleados.txt"));
+            BufferedReader br = new BufferedReader(reader);
+            String texto = null;
+            OutputStreamWriter pw = new OutputStreamWriter(openFileOutput("empleados.tmp", Context.MODE_PRIVATE));
+            while ((texto = br.readLine() ) != null) {
+                String[] linea = texto.split(":");
+                linea[0] = "Nombre modificado";
+                pw.write(linea[0] + ":" + //nombre
+                        linea[1] + ":" + //apellido
+                        linea[2] + ":" + //sexo
+                        linea[3] + ":" + //fechaNacimiento
+                        linea[4] + ":" + //fechaIngreso
+                        linea[5] + ":" + //salario
+                        linea[6] + ":" + //estado empleado
+                        "\n"); //salto de linea
+                pw.flush();
+            }
+            pw.close();
+            br.close();
+
+
+            File archivo = new File("/data/data/app.umariana.com.persistenciaconficheros/files/empleados.txt");
+            File temp = new File("/data/data/app.umariana.com.persistenciaconficheros/files/empleados.tmp");
+
+            if (!archivo.delete()) {
+                Toast.makeText(this, "No se pudo eliminar el archivo", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!temp.renameTo(archivo)) {
+                Toast.makeText(this, "No se pudo renombrar el archivo", Toast.LENGTH_SHORT).show();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Archivo no encontrado", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Error al escribir", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void modFechaIngreso () {
         //TODO Crear método que modifique la fecha de ingreso de todos los empleados
+        try {
+            InputStreamReader reader = new InputStreamReader(openFileInput("empleados.txt"));
+            BufferedReader br = new BufferedReader(reader);
+            String texto = null;
+            OutputStreamWriter pw = new OutputStreamWriter(openFileOutput("empleados.tmp", Context.MODE_PRIVATE));
+            while ((texto = br.readLine() ) != null) {
+                String[] linea = texto.split(":");
+                linea[4] = "1234524201200l";
+                pw.write(linea[0] + ":" + //nombre
+                        linea[1] + ":" + //apellido
+                        linea[2] + ":" + //sexo
+                        linea[3] + ":" + //fechaNacimiento
+                        linea[4] + ":" + //fechaIngreso
+                        linea[5] + ":" + //salario
+                        linea[6] + ":" + //estado empleado
+                        "\n"); //salto de linea
+                pw.flush();
+            }
+            pw.close();
+            br.close();
+
+
+            File archivo = new File("/data/data/app.umariana.com.persistenciaconficheros/files/empleados.txt");
+            File temp = new File("/data/data/app.umariana.com.persistenciaconficheros/files/empleados.tmp");
+
+            if (!archivo.delete()) {
+                Toast.makeText(this, "No se pudo eliminar el archivo", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!temp.renameTo(archivo)) {
+                Toast.makeText(this, "No se pudo renombrar el archivo", Toast.LENGTH_SHORT).show();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Archivo no encontrado", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Error al escribir", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void modSalario () {
         //TODO Crear método que modifique el salario de todos los empleados
+        try {
+            InputStreamReader reader = new InputStreamReader(openFileInput("empleados.txt"));
+            BufferedReader br = new BufferedReader(reader);
+            String texto = null;
+            OutputStreamWriter pw = new OutputStreamWriter(openFileOutput("empleados.tmp", Context.MODE_PRIVATE));
+            while ((texto = br.readLine() ) != null) {
+                String[] linea = texto.split(":");
+                linea[5] = "1500000";
+                pw.write(linea[0] + ":" + //nombre
+                        linea[1] + ":" + //apellido
+                        linea[2] + ":" + //sexo
+                        linea[3] + ":" + //fechaNacimiento
+                        linea[4] + ":" + //fechaIngreso
+                        linea[5] + ":" + //salario
+                        linea[6] + ":" + //estado empleado
+                        "\n"); //salto de linea
+                pw.flush();
+            }
+            pw.close();
+            br.close();
+
+
+            File archivo = new File("/data/data/app.umariana.com.persistenciaconficheros/files/empleados.txt");
+            File temp = new File("/data/data/app.umariana.com.persistenciaconficheros/files/empleados.tmp");
+
+            if (!archivo.delete()) {
+                Toast.makeText(this, "No se pudo eliminar el archivo", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!temp.renameTo(archivo)) {
+                Toast.makeText(this, "No se pudo renombrar el archivo", Toast.LENGTH_SHORT).show();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Archivo no encontrado", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Error al escribir", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void modEstado () {
         //TODO Crear método que modifique el estado de todos los empleados
+        try {
+            InputStreamReader reader = new InputStreamReader(openFileInput("empleados.txt"));
+            BufferedReader br = new BufferedReader(reader);
+            String texto = null;
+            OutputStreamWriter pw = new OutputStreamWriter(openFileOutput("empleados.tmp", Context.MODE_PRIVATE));
+            while ((texto = br.readLine() ) != null) {
+                String[] linea = texto.split(":");
+                linea[6] = "false";
+                pw.write(linea[0] + ":" + //nombre
+                        linea[1] + ":" + //apellido
+                        linea[2] + ":" + //sexo
+                        linea[3] + ":" + //fechaNacimiento
+                        linea[4] + ":" + //fechaIngreso
+                        linea[5] + ":" + //salario
+                        linea[6] + ":" + //estado empleado
+                        "\n"); //salto de linea
+                pw.flush();
+            }
+            pw.close();
+            br.close();
+
+
+            File archivo = new File("/data/data/app.umariana.com.persistenciaconficheros/files/empleados.txt");
+            File temp = new File("/data/data/app.umariana.com.persistenciaconficheros/files/empleados.tmp");
+
+            if (!archivo.delete()) {
+                Toast.makeText(this, "No se pudo eliminar el archivo", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!temp.renameTo(archivo)) {
+                Toast.makeText(this, "No se pudo renombrar el archivo", Toast.LENGTH_SHORT).show();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Archivo no encontrado", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Error al escribir", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void modTodo () {
+    public void modTodo ()
+    {
         //TODO Crear método que modifique todos los campos de todos los empleados
+        try {
+            InputStreamReader reader = new InputStreamReader(openFileInput("empleados.txt"));
+            BufferedReader br = new BufferedReader(reader);
+            String texto = null;
+            OutputStreamWriter pw = new OutputStreamWriter(openFileOutput("empleados.tmp", Context.MODE_PRIVATE));
+            while ((texto = br.readLine() ) != null) {
+                String[] linea = texto.split(":");
+                linea[0] = "Nombre Todo";
+                linea[1] = "Apellido Todo";
+                linea[2] = "F";
+                linea[3] = "5432124199000l";
+                linea[4] = "5432124199000l";
+                linea[5] = "2000000";
+                linea[6] = "true";
+                pw.write(linea[0] + ":" + //nombre
+                        linea[1] + ":" + //apellido
+                        linea[2] + ":" + //sexo
+                        linea[3] + ":" + //fechaNacimiento
+                        linea[4] + ":" + //fechaIngreso
+                        linea[5] + ":" + //salario
+                        linea[6] + ":" + //estado empleado
+                        "\n"); //salto de linea
+                pw.flush();
+            }
+            pw.close();
+            br.close();
+
+
+            File archivo = new File("/data/data/app.umariana.com.persistenciaconficheros/files/empleados.txt");
+            File temp = new File("/data/data/app.umariana.com.persistenciaconficheros/files/empleados.tmp");
+
+            if (!archivo.delete()) {
+                Toast.makeText(this, "No se pudo eliminar el archivo", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!temp.renameTo(archivo)) {
+                Toast.makeText(this, "No se pudo renombrar el archivo", Toast.LENGTH_SHORT).show();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Archivo no encontrado", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Error al escribir", Toast.LENGTH_SHORT).show();
+        }
     }
 }
